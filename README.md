@@ -4,7 +4,7 @@ Name: BlazorFluxor
 URL: https://github.com/stevsharp/BlazorFluxor
 Description:
 
-BlazorFluxor is likely a library or framework for state management in Blazor applications.
+BlazorFluxor is a demo project make use of state management in Blazor applications.
 It could be implementing the Flux/Redux architecture pattern, providing a unidirectional data flow for Blazor.
 Key Features:
 
