@@ -24,14 +24,5 @@ Documentation:
 Check for documentation or a README.md file in the repository for instructions on how to use the library, examples, and any additional information.
 Contributions:
 
-If it's an open-source project, contributors may have added features, fixed bugs, or improved the library. Check the contributors' list if available.
-License:
-
-Verify the license information to understand how you can use, modify, and distribute the code from this repository.
-Issues and Discussions:
-
-Look into the repository's issues and discussions sections to see if there are any reported problems, feature requests, or community conversations.
-Release History:
-
 Explore the release history to understand the evolution of the library and whether there are any breaking changes or new features in recent versions.
 Remember to explore the repository itself for the most accurate and up-to-date information. If you have specific questions or if there's anything specific you'd like to know about the BlazorFluxor library, feel free to ask!
