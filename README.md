@@ -26,3 +26,7 @@ Contributions:
 
 Explore the release history to understand the evolution of the library and whether there are any breaking changes or new features in recent versions.
 Remember to explore the repository itself for the most accurate and up-to-date information. If you have specific questions or if there's anything specific you'd like to know about the BlazorFluxor library, feel free to ask!
+
+## Connect with Me
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue)](https://www.linkedin.com/in/spyros-ponaris-913a6937/)
