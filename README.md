@@ -1,4 +1,4 @@
-# BlazorFluxor CRUD Application
+# Blazor And Fluxor State Machine CRUD Application
 
 This is a CRUD (Create, Read, Update, Delete) application built with **Blazor**, **Fluxor**, and **MudBlazor**. It uses Fluxor for state management, providing predictable state handling 
 and efficient state updates, and MudBlazor for UI components, offering a Material Design-inspired user experience.
