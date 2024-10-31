@@ -1,0 +1,33 @@
+﻿@page "/"
+@using BlazorAndFluxorCrud.State;
+
+<PageTitle>Home</PageTitle>
+
+@inject IState<ItemState> ItemState
+
+<MudButton @onclick="LoadItemsDirect" Variant="Variant.Filled" Color="Color.Primary">Load Items</MudButton>
+
+@if (ItemState.Value.IsLoading)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+}
+else
+{
+    <MudTable Items="ItemState.Value.Items" Hover="true" SortLabel="Sort By" Elevation="0">
+        <HeaderContent>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Item, object>(x=>x.Id)">Id</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Item, string>(x=>x.Name ?? string.Empty)">Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Item, string>(x=>x.Description ?? string.Empty)">Description</MudTableSortLabel></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Id">@context.Id</MudTd>
+            <MudTd DataLabel="Name. (C)">@context.Name</MudTd>
+            <MudTd DataLabel="Desc. (F)">@context.Description</MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager PageSizeOptions="new int[]{50, 100}" />
+        </PagerContent>
+    </MudTable>
+
+}
+

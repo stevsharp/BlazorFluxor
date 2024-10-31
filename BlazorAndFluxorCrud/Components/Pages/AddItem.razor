@@ -1,0 +1,21 @@
+﻿@page "/add-item"
+@using BlazorAndFluxorCrud.Model
+@using BlazorAndFluxorCrud.State
+
+<h3>Add New Item</h3>
+
+<EditForm Enhance="true" Model="newItem" FormName="AddItemForm" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>        
+        <MudTextField T="string" For="@(() => newItem.Name)" @bind-Value="newItem.Name" Label="Name" />
+    </div>
+
+    <div>
+        <MudTextField T="string" For="@(() => newItem.Description)" @bind-Value="newItem.Description" Label="Description" />
+    </div>
+
+    <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Color="Color.Secondary">Add Item</MudButton>
+
+</EditForm>
