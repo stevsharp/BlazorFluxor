@@ -1,0 +1,24 @@
+﻿@page "/edit-item/{ItemId:int}"
+
+@rendermode InteractiveServer
+
+<h3>Edit Item</h3>
+
+@* @if (itemToEdit is not null)
+{ *@
+    <EditForm Enhance="true" Model="itemToEdit" FormName="EditItemForm" OnValidSubmit="HandleValidSubmit">
+        <div>
+            <MudTextField T="string" For="@(() => itemToEdit.Name)" @bind-Value="itemToEdit.Name" Label="Name" />
+        </div>
+
+        <div>
+            <MudTextField T="string" For="@(() => itemToEdit.Description)" @bind-Value="itemToEdit.Description" Label="Description" />
+        </div>
+
+        <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Color="Color.Secondary">Update Item</MudButton>
+    </EditForm>
+@* }
+else
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+} *@

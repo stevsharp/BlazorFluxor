@@ -18,16 +18,24 @@ else
             <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Item, object>(x=>x.Id)">Id</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Item, string>(x=>x.Name ?? string.Empty)">Name</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Item, string>(x=>x.Description ?? string.Empty)">Description</MudTableSortLabel></MudTh>
+            <MudTh Style="text-align:right">Actions</MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Id">@context.Id</MudTd>
             <MudTd DataLabel="Name. (C)">@context.Name</MudTd>
             <MudTd DataLabel="Desc. (F)">@context.Description</MudTd>
+            <MudTd DataLabel="Actions" Style="text-align: right">
+
+                <MudMenu Label="Actions" Variant="Variant.Filled" DisableElevation="true" IconColor="Color.Secondary" AnchorOrigin="Origin.TopLeft">
+                    <MudMenuItem OnClick="() => NavigateToEditPage(context.Id)">Edit</MudMenuItem>
+                    <MudMenuItem OnClick="() => Delete(context.Id)">Delete</MudMenuItem>
+                </MudMenu>
+            </MudTd>
         </RowTemplate>
+
         <PagerContent>
             <MudTablePager PageSizeOptions="new int[]{50, 100}" />
         </PagerContent>
     </MudTable>
-
 }
 

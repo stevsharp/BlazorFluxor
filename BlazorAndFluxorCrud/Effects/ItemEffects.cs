@@ -3,11 +3,28 @@ using BlazorAndFluxorCrud.State;
 using Fluxor;
 using Microsoft.EntityFrameworkCore;
 
+using MudBlazor;
+
 namespace BlazorAndFluxorCrud.Effects;
 
-public class ItemEffects(AppDbContext dbContext)
+public class ItemEffects(AppDbContext dbContext, ISnackbar snackBar)
 {
     private readonly AppDbContext _dbContext = dbContext;
+
+    [EffectMethod]
+    public async Task HandleFetchCurrentItemAction(FetchCurrentItemAction action, IDispatcher dispatcher)
+    {
+        var item = await _dbContext.Items.FindAsync(action.ItemId);
+
+        if (item is not null)
+        {
+            dispatcher.Dispatch(new LoadCurrentItemAction(item));
+        }
+        else
+        {
+            dispatcher.Dispatch(new LoadCurrentItemAction(null)); // or handle as appropriate
+        }
+    }
 
     [EffectMethod]
     public async Task HandleFetchItemsAction(FetchItemsAction action, IDispatcher dispatcher)
@@ -24,6 +41,8 @@ public class ItemEffects(AppDbContext dbContext)
 
         await _dbContext.SaveChangesAsync();
 
+        snackBar.Add($"Item Addedd succesfully {addedItem.Id}", Severity.Success);
+
         dispatcher.Dispatch(new AddItemResultAction(addedItem));
     }
 
@@ -31,8 +50,10 @@ public class ItemEffects(AppDbContext dbContext)
     public async Task HandleUpdateItemAction(UpdateItemAction action, IDispatcher dispatcher)
     {
         _dbContext.Items.Update(action.UpdatedItem);
-        
+
         await _dbContext.SaveChangesAsync();
+
+        snackBar.Add($"Item Updated succesfully {action.UpdatedItem.Id}", Severity.Success);
 
         dispatcher.Dispatch(new UpdateItemResultAction(action.UpdatedItem));
     }
@@ -47,6 +68,8 @@ public class ItemEffects(AppDbContext dbContext)
             _dbContext.Items.Remove(item);
 
             await _dbContext.SaveChangesAsync();
+
+            snackBar.Add($"Item Deleted succesfully {item.Id}", Severity.Success);
 
             dispatcher.Dispatch(new DeleteItemResultAction(action.ItemId));
         }
