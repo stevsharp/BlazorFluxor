@@ -28,28 +28,32 @@ dotnet add package MudBlazor
 3. **Access the Application**
    Open a web browser and navigate to http://localhost:5000.
 
-Architecture
+**Architecture**
 State Management with Fluxor
 This application uses the Flux pattern implemented via Fluxor to manage the application's state.
 
-Actions: Define intents in the app, such as LoadItems, AddItem, UpdateItem, and DeleteItem.
+Actions: 
+Define intents in the app, such as LoadItems, AddItem, UpdateItem, and DeleteItem.
 Reducers: Respond to actions and update the state.
 Effects: Handle side-effects, like making API calls to the backend.
 Selectors: Retrieve specific pieces of state for use in components.
-UI with MudBlazor
+
+**UI with MudBlazor**
 MudBlazor components provide a clean UI based on Material Design. Some key components used:
 
 MudTable for listing items.
 MudButton for CRUD controls.
 MudDialog for modals (create/edit forms).
 MudTextField and other input components for forms.
-Project Structure
+
+**Project Structure**
 /Actions - Defines all actions related to CRUD operations.
 /Reducers - Contains reducers to update state based on actions.
 /Effects - Includes effects to handle asynchronous operations (e.g., API calls).
 /State - Holds the application state and initial state setup.
 /Components - Contains Blazor components for the UI (e.g., ItemList.razor, ItemForm.razor).
-CRUD Workflow
+
+**CRUD Workflow**
 Create: Opens a dialog for adding a new item to the list.
 Read: Displays a list of items.
 Update: Opens a dialog for editing an item.
