@@ -1,6 +1,8 @@
 using BlazorAndFluxorCrud.Components;
 using BlazorAndFluxorCrud.Effects;
 using BlazorAndFluxorCrud.Model;
+using BlazorAndFluxorCrud.Service;
+
 using Fluxor;
 using Fluxor.Blazor.Web.ReduxDevTools;
 
@@ -26,6 +28,7 @@ builder.Services.AddFluxor(o =>
 builder.Services.AddScoped<ItemEffects>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=items.db"));
+builder.Services.AddScoped<DialogUIService>();
 builder.Services.AddMudServices();
 
 var app = builder.Build();

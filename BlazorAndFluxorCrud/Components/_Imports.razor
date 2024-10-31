@@ -1,6 +1,7 @@
 ﻿@using System.Net.Http
 @using System.Net.Http.Json
 @using BlazorAndFluxorCrud.Model
+@using BlazorAndFluxorCrud.Service
 @using BlazorAndFluxorCrud.State
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
@@ -17,3 +18,5 @@
 @inject IDispatcher _Dispatcher
 @inject NavigationManager Navigation
 @inject AppDbContext _dbContext
+@inject IDialogService _dialogService
+@inject DialogUIService _dialogUIService
