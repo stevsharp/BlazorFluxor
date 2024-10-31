@@ -16,3 +16,5 @@ and efficient state updates, and MudBlazor for UI components, offering a Materia
    ```bash
    git clone https://github.com/yourusername/BlazorFluxor.git
    cd BlazorFluxor
+
+2. **Install Fluxor and MudBlazor**
