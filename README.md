@@ -57,3 +57,7 @@ This application uses the Flux pattern implemented via Fluxor to manage the appl
 - **Read: Displays a list of items.**
 - **Update: Opens a dialog for editing an item.**
 - **Delete: Deletes an item from the list.**
+
+## Connect with Me
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue)](https://www.linkedin.com/in/spyros-ponaris-913a6937/)
