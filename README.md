@@ -11,7 +11,6 @@ and efficient state updates, and MudBlazor for UI components, offering a Materia
 https://mudblazor.com/
 - **CRUD Operations**: Manage a list of items with functionality to create, read, update, and delete records using EF Core 
 https://learn.microsoft.com/en-us/ef/core/
-- **Data Persistence**: Uses a mock backend to simulate CRUD operations.
 
 ## Installation
 
