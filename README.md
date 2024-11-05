@@ -6,8 +6,11 @@ and efficient state updates, and MudBlazor for UI components, offering a Materia
 ## Features
 
 - **Fluxor State Management**: Centralized, predictable state using Fluxor, supporting actions, effects, reducers, and selectors.
-- **MudBlazor UI Components**: Elegant and responsive Material Design components.
-- **CRUD Operations**: Manage a list of items with functionality to create, read, update, and delete records.
+  https://github.com/mrpmorris/Fluxor
+- **MudBlazor UI Components**: Elegant and responsive Material Design components. 
+https://mudblazor.com/
+- **CRUD Operations**: Manage a list of items with functionality to create, read, update, and delete records using EF Core 
+https://learn.microsoft.com/en-us/ef/core/
 - **Data Persistence**: Uses a mock backend to simulate CRUD operations.
 
 ## Installation
