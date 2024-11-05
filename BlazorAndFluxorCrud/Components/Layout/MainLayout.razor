@@ -1,7 +1,16 @@
 ﻿@inherits LayoutComponentBase
 
+
 <MudPopoverProvider />
-<MudDialogProvider />
+<MudDialogProvider
+    FullWidth="true"
+    MaxWidth="MaxWidth.Large"
+    CloseButton="true"
+    BackdropClick="false"
+    NoHeader="true"
+    Position="DialogPosition.Center"
+    CloseOnEscapeKey="true"/>
+
 <MudSnackbarProvider />
 <MudThemeProvider />
 <MudLayout>

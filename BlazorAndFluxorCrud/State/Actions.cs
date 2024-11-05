@@ -7,7 +7,7 @@ namespace BlazorAndFluxorCrud.State;
 public record FetchCurrentItemAction(int ItemId);
 public record LoadCurrentItemAction(Item? CurrentItem);
 public record FetchItemsAction;
-public record FetchItemsResultAction(List<Item> Items);
+public record FetchItemsResultAction(IEnumerable<Item> Items);
 public record AddItemAction(Item NewItem);
 public record AddItemResultAction(Item AddedItem);
 public record UpdateItemAction(Item UpdatedItem);

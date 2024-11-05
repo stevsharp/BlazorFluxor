@@ -11,7 +11,7 @@ public partial class EditItemForm
     [Parameter] 
     public int ItemId { get; set; }
 
-    private Item itemToEdit = new Item();
+    private Item itemToEdit = new();
 
     protected override Task OnInitializedAsync()
     {

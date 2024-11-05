@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+
 using MudBlazor;
 
 namespace BlazorAndFluxorCrud.Components;
@@ -14,13 +15,12 @@ public partial class DeleteConfirmationDialog
     [EditorRequired]
     [Parameter]
     public object Command { get; set; } = default!;
-    private Task Submit()
+    private async Task Submit()
     {
         MudDialog.Close(DialogResult.Ok(true));
 
-        return Task.CompletedTask;
+        await Task.CompletedTask;
     }
-
     private void Cancel()
     {
         MudDialog.Cancel();

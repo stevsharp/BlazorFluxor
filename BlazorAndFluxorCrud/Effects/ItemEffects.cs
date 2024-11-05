@@ -1,4 +1,5 @@
 ﻿using BlazorAndFluxorCrud.Model;
+using BlazorAndFluxorCrud.Service;
 using BlazorAndFluxorCrud.State;
 using Fluxor;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using MudBlazor;
 
 namespace BlazorAndFluxorCrud.Effects;
 
-public class ItemEffects(AppDbContext dbContext, ISnackbar snackBar)
+public class ItemEffects(AppDbContext dbContext, ISnackbar snackBar, DialogUIService DialogUIService)
 {
     private readonly AppDbContext _dbContext = dbContext;
 
@@ -61,17 +62,25 @@ public class ItemEffects(AppDbContext dbContext, ISnackbar snackBar)
     [EffectMethod]
     public async Task HandleDeleteItemAction(DeleteItemAction action, IDispatcher dispatcher)
     {
-        var item = await _dbContext.Items.FindAsync(action.ItemId);
-
-        if (item != null)
+        await DialogUIService.ShowDeleteConfirmationDialog(new object(), "Delete Item", $"Delete Item with Id : {action.ItemId}",
+        async () =>
         {
-            _dbContext.Items.Remove(item);
+            var item = await _dbContext.Items.FindAsync(action.ItemId);
 
-            await _dbContext.SaveChangesAsync();
+            if (item is not null)
+            {
+                _dbContext.Items.Remove(item);
 
-            snackBar.Add($"Item Deleted succesfully {item.Id}", Severity.Success);
+                await _dbContext.SaveChangesAsync();
 
-            dispatcher.Dispatch(new DeleteItemResultAction(action.ItemId));
-        }
+                snackBar.Add($"Item Deleted succesfully {item.Id}", Severity.Success);
+
+                dispatcher.Dispatch(new DeleteItemResultAction(action.ItemId));
+            }
+        },
+        async () =>
+        {
+            snackBar.Add("Deletion canceled by the user.", Severity.Info);
+        });
     }
 }

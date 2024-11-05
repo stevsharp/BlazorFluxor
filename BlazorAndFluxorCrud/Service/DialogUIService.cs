@@ -25,15 +25,11 @@ public class DialogUIService(IDialogService dialogService, ISnackbar snackbar)
         if (result is not null && !result.Canceled)
         {
             await onConfirm();
-
-            _snackbar.Add($"{"Delete Success"}", Severity.Info);
-
         }
         else if (onCancel != null)
         {
             await onCancel();
         }
     }
-
 
 }
