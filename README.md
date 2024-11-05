@@ -44,7 +44,7 @@ This application uses the Flux pattern implemented via Fluxor to manage the appl
 - **MudBlazor components provide a clean UI based on Material Design. Some key components used:**
 - **MudTable for listing items.**
 - **MudButton for CRUD controls.**
-- **MudDialog for modals (create/edit forms).**
+- **MudDialog for modals**
 - **MudTextField and other input components for forms.**
 
 ## Project Structure
