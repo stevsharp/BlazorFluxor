@@ -1,4 +1,4 @@
-# Blazor And Fluxor State Machine CRUD Application
+# Blazor And Fluxor State Machine -  CRUD Application
 
 This is a CRUD (Create, Read, Update, Delete) application built with **Blazor**, **Fluxor**, and **MudBlazor**. It uses Fluxor for state management, providing predictable state handling 
 and efficient state updates, and MudBlazor for UI components, offering a Material Design-inspired user experience.
@@ -6,9 +6,11 @@ and efficient state updates, and MudBlazor for UI components, offering a Materia
 ## Features
 
 - **Fluxor State Management**: Centralized, predictable state using Fluxor, supporting actions, effects, reducers, and selectors.
-- **MudBlazor UI Components**: Elegant and responsive Material Design components.
-- **CRUD Operations**: Manage a list of items with functionality to create, read, update, and delete records.
-- **Data Persistence**: Uses a mock backend to simulate CRUD operations.
+  https://github.com/mrpmorris/Fluxor
+- **MudBlazor UI Components**: Elegant and responsive Material Design components. 
+https://mudblazor.com/
+- **CRUD Operations**: Manage a list of items with functionality to create, read, update, and delete records using EF Core 
+https://learn.microsoft.com/en-us/ef/core/
 
 ## Installation
 
@@ -42,7 +44,7 @@ This application uses the Flux pattern implemented via Fluxor to manage the appl
 - **MudBlazor components provide a clean UI based on Material Design. Some key components used:**
 - **MudTable for listing items.**
 - **MudButton for CRUD controls.**
-- **MudDialog for modals (create/edit forms).**
+- **MudDialog for modals**
 - **MudTextField and other input components for forms.**
 
 ## Project Structure
