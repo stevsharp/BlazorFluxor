@@ -5,3 +5,6 @@
 /BlazorAndFluxorCrud/bin/Debug/net8.0
 /BlazorAndFluxorCrud/obj
 /.vs
+/Application/obj
+/Domain/obj
+/Infrastructure/obj
