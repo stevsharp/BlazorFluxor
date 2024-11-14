@@ -8,3 +8,6 @@
 /Application/obj
 /Domain/obj
 /Infrastructure/obj
+/Application/bin/Debug/net8.0
+/Domain/bin/Debug/net8.0
+/Infrastructure/bin/Debug/net8.0
