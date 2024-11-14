@@ -5,9 +5,6 @@
 <h3>Add New Item</h3>
 
 <EditForm Enhance="true" Model="newItem" FormName="AddItemForm" OnValidSubmit="HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
     <div>        
         <MudTextField T="string" For="@(() => newItem.Name)" @bind-Value="newItem.Name" Label="Name" />
     </div>

@@ -7,10 +7,22 @@ public partial class Home
     {
         ItemState.StateChanged += (s, e) => StateHasChanged();
     }
-
     private Task LoadItemsDirect()
     {
         _Dispatcher.Dispatch(new FetchItemsAction());
+
+        return Task.CompletedTask;
+    }
+
+    private Task NavigateToEditPage(int id = 0)
+    {
+        Navigation.NavigateTo($"/edit-item/{id}");
+
+        return Task.CompletedTask;
+    }
+    private Task Delete(int id)
+    {
+        _Dispatcher.Dispatch(new DeleteItemAction(id));
 
         return Task.CompletedTask;
     }

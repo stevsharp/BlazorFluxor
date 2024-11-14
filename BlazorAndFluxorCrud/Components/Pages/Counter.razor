@@ -1,5 +1,6 @@
 ﻿@page "/counter"
 @rendermode InteractiveServer
+@inject IDialogService _dialogService;
 
 <PageTitle>Counter</PageTitle>
 
@@ -12,8 +13,10 @@
 @code {
     private int currentCount = 0;
 
-    private void IncrementCount()
+    private async Task IncrementCount()
     {
-        currentCount++;
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        await _dialogService.ShowAsync<DeleteConfirmationDialog>("Simple Dialog", options);
     }
 }
