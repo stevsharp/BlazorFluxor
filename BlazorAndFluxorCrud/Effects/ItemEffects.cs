@@ -1,31 +1,13 @@
 ﻿using BlazorAndFluxorCrud.Model;
-using BlazorAndFluxorCrud.Service;
 using BlazorAndFluxorCrud.State;
 using Fluxor;
 using Microsoft.EntityFrameworkCore;
 
-using MudBlazor;
-
 namespace BlazorAndFluxorCrud.Effects;
 
-public class ItemEffects(AppDbContext dbContext, ISnackbar snackBar, DialogUIService DialogUIService)
+public class ItemEffects(AppDbContext dbContext)
 {
     private readonly AppDbContext _dbContext = dbContext;
-
-    [EffectMethod]
-    public async Task HandleFetchCurrentItemAction(FetchCurrentItemAction action, IDispatcher dispatcher)
-    {
-        var item = await _dbContext.Items.FindAsync(action.ItemId);
-
-        if (item is not null)
-        {
-            dispatcher.Dispatch(new LoadCurrentItemAction(item));
-        }
-        else
-        {
-            dispatcher.Dispatch(new LoadCurrentItemAction(null)); // or handle as appropriate
-        }
-    }
 
     [EffectMethod]
     public async Task HandleFetchItemsAction(FetchItemsAction action, IDispatcher dispatcher)
@@ -42,8 +24,6 @@ public class ItemEffects(AppDbContext dbContext, ISnackbar snackBar, DialogUISer
 
         await _dbContext.SaveChangesAsync();
 
-        snackBar.Add($"Item Addedd succesfully {addedItem.Id}", Severity.Success);
-
         dispatcher.Dispatch(new AddItemResultAction(addedItem));
     }
 
@@ -51,10 +31,8 @@ public class ItemEffects(AppDbContext dbContext, ISnackbar snackBar, DialogUISer
     public async Task HandleUpdateItemAction(UpdateItemAction action, IDispatcher dispatcher)
     {
         _dbContext.Items.Update(action.UpdatedItem);
-
+        
         await _dbContext.SaveChangesAsync();
-
-        snackBar.Add($"Item Updated succesfully {action.UpdatedItem.Id}", Severity.Success);
 
         dispatcher.Dispatch(new UpdateItemResultAction(action.UpdatedItem));
     }
@@ -62,25 +40,15 @@ public class ItemEffects(AppDbContext dbContext, ISnackbar snackBar, DialogUISer
     [EffectMethod]
     public async Task HandleDeleteItemAction(DeleteItemAction action, IDispatcher dispatcher)
     {
-        await DialogUIService.ShowDeleteConfirmationDialog(new object(), "Delete Item", $"Delete Item with Id : {action.ItemId}",
-        async () =>
+        var item = await _dbContext.Items.FindAsync(action.ItemId);
+
+        if (item != null)
         {
-            var item = await _dbContext.Items.FindAsync(action.ItemId);
+            _dbContext.Items.Remove(item);
 
-            if (item is not null)
-            {
-                _dbContext.Items.Remove(item);
+            await _dbContext.SaveChangesAsync();
 
-                await _dbContext.SaveChangesAsync();
-
-                snackBar.Add($"Item Deleted succesfully {item.Id}", Severity.Success);
-
-                dispatcher.Dispatch(new DeleteItemResultAction(action.ItemId));
-            }
-        },
-        async () =>
-        {
-            snackBar.Add("Deletion canceled by the user.", Severity.Info);
-        });
+            dispatcher.Dispatch(new DeleteItemResultAction(action.ItemId));
+        }
     }
 }

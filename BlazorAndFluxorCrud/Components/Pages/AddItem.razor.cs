@@ -4,7 +4,7 @@ using BlazorAndFluxorCrud.State;
 namespace BlazorAndFluxorCrud.Components.Pages;
 public partial class AddItem
 {
-    private Item newItem = new();
+    private Item newItem = new Item();
 
     private void HandleValidSubmit()
     {

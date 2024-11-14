@@ -1,5 +1,6 @@
 ﻿using BlazorAndFluxorCrud.State;
 using Fluxor;
+
 namespace BlazorAndFluxorCrud.Reducers;
 
 public static class ItemReducers
@@ -16,16 +17,6 @@ public static class ItemReducers
         state with { Items = state.Items.Add(action.AddedItem), IsLoading = false };
 
     [ReducerMethod]
-    public static ItemState ReduceUpdateItemAction(ItemState state, UpdateItemAction action)
-    {
-        var updatedItems = state.Items
-            .Select(item => item.Id == action.UpdatedItem.Id ? action.UpdatedItem : item)
-            .ToList();
-
-        return state with { Items = [.. updatedItems], IsLoading = false };
-    }
-
-    [ReducerMethod]
     public static ItemState ReduceUpdateItemResultAction(ItemState state, UpdateItemResultAction action)
     {
         return state with { Items = state
@@ -33,12 +24,6 @@ public static class ItemReducers
             .Items.First(i => i.Id == action.UpdatedItem.Id), 
             action.UpdatedItem), 
             IsLoading = false };
-    }
-
-    [ReducerMethod]
-    public static ItemState ReduceLoadCurrentItemAction(ItemState state, LoadCurrentItemAction action)
-    {
-        return new ItemState(state.Items, IsLoading: false, "", CurrentItem: action.CurrentItem);
     }
 
     [ReducerMethod]
