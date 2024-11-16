@@ -1,14 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Common;
 
 namespace BlazorAndFluxorCrud.Model;
 
-public class Item
+public class Item : Entity<int>
 {
-    [Key]
-    [Required]
-    public int Id { get; set; }
-
-    public string? Name { get; set; }
-
-    public string? Description { get; set; }
+    public Name Name { get; set; } = default!;
+    public Description Description { get; set; } = default!;
 }
