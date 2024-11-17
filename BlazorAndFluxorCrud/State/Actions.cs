@@ -1,21 +1,23 @@
-﻿using BlazorAndFluxorCrud.Model;
+﻿using Application.Features.Item.DTOs;
+
+using BlazorAndFluxorCrud.Model;
 
 using System.Collections.Immutable;
 
 namespace BlazorAndFluxorCrud.State;
 
 public record FetchCurrentItemAction(int ItemId);
-public record LoadCurrentItemAction(Item? CurrentItem);
+public record LoadCurrentItemAction(ItemDto? CurrentItem);
 public record FetchItemsAction;
-public record FetchItemsResultAction(IEnumerable<Item> Items);
-public record AddItemAction(Item NewItem);
-public record AddItemResultAction(Item AddedItem);
-public record UpdateItemAction(Item UpdatedItem);
-public record UpdateItemResultAction(Item UpdatedItem);
+public record FetchItemsResultAction(IEnumerable<ItemDto> Items);
+public record AddItemAction(ItemDto NewItem);
+public record AddItemResultAction(ItemDto AddedItem);
+public record UpdateItemAction(ItemDto UpdatedItem);
+public record UpdateItemResultAction(ItemDto UpdatedItem);
 public record DeleteItemAction(int ItemId);
 public record DeleteItemResultAction(int ItemId);
 
-public record ItemState(ImmutableList<Item> Items, bool IsLoading, string ErrorMessage, Item CurrentItem = null)
+public record ItemState(ImmutableList<ItemDto> Items, bool IsLoading, string ErrorMessage, ItemDto CurrentItem = null)
 {
     public static ItemState InitialState
     {

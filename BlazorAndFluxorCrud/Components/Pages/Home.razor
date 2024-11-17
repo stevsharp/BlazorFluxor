@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using BlazorAndFluxorCrud.State;
+@using Application.Features.Item.DTOs;
+
 @rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
@@ -14,11 +16,11 @@
 }
 else
 {
-   @*  <MudTable Items="ItemState.Value.Items" Hover="true" SortLabel="Sort By" Elevation="0">
+    <MudTable Items="ItemState.Value.Items" Hover="true" SortLabel="Sort By" Elevation="0">
         <HeaderContent>
-            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Item, object>(x=>x.Id)">Id</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Item, string>(x=>x.Name.Value ?? string.Empty)">Name</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Item, string>(x=>x.Description.Value ?? string.Empty)">Description</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<ItemDto, object>(x=>x.Id)">Id</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<ItemDto, string>(x=>x.Name ?? string.Empty)">Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<ItemDto, string>(x=>x.Description ?? string.Empty)">Description</MudTableSortLabel></MudTh>
             <MudTh Style="text-align:right">Actions</MudTh>
         </HeaderContent>
         <RowTemplate>
@@ -37,6 +39,6 @@ else
         <PagerContent>
             <MudTablePager PageSizeOptions="new int[]{50, 100}" />
         </PagerContent>
-    </MudTable> *@
+    </MudTable>
 }
 
