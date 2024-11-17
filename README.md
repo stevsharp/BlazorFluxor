@@ -9,8 +9,16 @@ and efficient state updates, and MudBlazor for UI components, offering a Materia
   https://github.com/mrpmorris/Fluxor
 - **MudBlazor UI Components**: Elegant and responsive Material Design components. 
 https://mudblazor.com/
-- **CRUD Operations**: Manage a list of items with functionality to create, read, update, and delete records using EF Core 
-https://learn.microsoft.com/en-us/ef/core/
+
+- **CRUD Operations**: using EF Core and MediatR: Implement robust Create, Read, Update, and Delete (CRUD) functionalities for managing a list of items using Entity Framework Core and MediatR. Leverage EF Core for efficient data access and mapping with your database, and utilize MediatR for handling commands and queries in a clean, CQRS-based architecture. This combination promotes a clear separation of concerns and helps in creating scalable, maintainable applications.
+
+EF Core: A lightweight, extensible, and cross-platform ORM for .NET that simplifies database access and reduces boilerplate code.
+
+Documentation: EF Core Overview
+MediatR: A popular .NET library for implementing the Mediator pattern, allowing for easy decoupling of request processing from the main business logic.
+https://learn.microsoft.com/en-us/ef/core/ 
+
+GitHub: MediatR [Repository](https://github.com/jbogard/MediatR)
 
 ## Installation
 
