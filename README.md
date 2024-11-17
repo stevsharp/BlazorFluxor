@@ -5,20 +5,22 @@ and efficient state updates, and MudBlazor for UI components, offering a Materia
 
 ## Features
 
-- **Fluxor State Management**: Centralized, predictable state using Fluxor, supporting actions, effects, reducers, and selectors.
-  https://github.com/mrpmorris/Fluxor
-- **MudBlazor UI Components**: Elegant and responsive Material Design components. 
-https://mudblazor.com/
+- **Fluxor State Management**: Centralized, predictable state management with Fluxor, supporting actions, effects, reducers, and selectors.
+Fluxor GitHub
 
-- **CRUD Operations**: using EF Core and MediatR: Implement robust Create, Read, Update, and Delete (CRUD) functionalities for managing a list of items using Entity Framework Core and MediatR. Leverage EF Core for efficient data access and mapping with your database, and utilize MediatR for handling commands and queries in a clean, CQRS-based architecture. This combination promotes a clear separation of concerns and helps in creating scalable, maintainable applications.
+- **MudBlazor UI Components**: Modern, responsive Material Design components for building intuitive UIs.
+MudBlazor Documentation
 
-EF Core: A lightweight, extensible, and cross-platform ORM for .NET that simplifies database access and reduces boilerplate code.
+- **CRUD Operations**: with EF Core and MediatR: Efficient Create, Read, Update, and Delete functionalities using Entity Framework Core and MediatR, following a clean, CQRS-based architecture for scalable and maintainable applications.
 
-Documentation: EF Core Overview
-MediatR: A popular .NET library for implementing the Mediator pattern, allowing for easy decoupling of request processing from the main business logic.
+EF Core: A lightweight, cross-platform ORM that simplifies database access.
+EF Core Overview
 https://learn.microsoft.com/en-us/ef/core/ 
-
-GitHub: MediatR [Repository](https://github.com/jbogard/MediatR)
+- **MediatR**: Implements the Mediator pattern, decoupling request processing from business logic.
+MediatR GitHub
+[Repository](https://github.com/jbogard/MediatR)
+- **Repository Pattern**: Encapsulates data access with a clean, generic repository interface, promoting testability, code reuse, and maintainability.
+- **Specification Pattern**: Defines reusable, composable business rules for querying data, providing flexibility and separation of concerns.
 
 ## Installation
 
