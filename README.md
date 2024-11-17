@@ -10,7 +10,9 @@ and efficient state updates, and MudBlazor for UI components, offering a Materia
 - **MudBlazor UI Components**: Elegant and responsive Material Design components. 
 https://mudblazor.com/
 - **CRUD Operations**: Manage a list of items with functionality to create, read, update, and delete records using EF Core 
-https://learn.microsoft.com/en-us/ef/core/
+https://learn.microsoft.com/en-us/ef/core/ 
+and MediatR
+https://github.com/jbogard/MediatR
 
 ## Installation
 
