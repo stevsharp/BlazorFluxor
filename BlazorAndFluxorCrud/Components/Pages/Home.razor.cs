@@ -1,10 +1,30 @@
+using Application.Features.Item.Specification;
+
+using BlazorAndFluxorCrud.Model;
 using BlazorAndFluxorCrud.State;
+
+using Domain.Common;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorAndFluxorCrud.Components.Pages;
 public partial class Home
 {
+    [Inject]
+    public IRepository<Item> _repository { get; set; }
+
     protected override void OnInitialized()
     {
+        try
+        {
+            // Test
+            // var da = _repository.ListAsync(new NullSpecification<Item>(), CancellationToken.None).Result;
+        }
+        catch (Exception ex)
+        {
+            var e = ex;
+        }
+
+
         ItemState.StateChanged += (s, e) => StateHasChanged();
     }
     private Task LoadItemsDirect()

@@ -1,15 +1,14 @@
 using BlazorAndFluxorCrud.Components;
 using BlazorAndFluxorCrud.Effects;
-using BlazorAndFluxorCrud.Model;
 using BlazorAndFluxorCrud.Service;
 
 using Fluxor;
 using Fluxor.Blazor.Web.ReduxDevTools;
 
-using Microsoft.EntityFrameworkCore;
-
 using MudBlazor;
 using MudBlazor.Services;
+using Infrastructure;
+using Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,9 +25,11 @@ builder.Services.AddFluxor(o =>
     });
 
 });
+
 builder.Services.AddScoped<ItemEffects>();
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=items.db"));
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
+
 builder.Services.AddScoped<DialogUIService>();
 
 builder.Services.AddMudServices(config =>

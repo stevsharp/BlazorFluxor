@@ -1,5 +1,9 @@
+using Application.Features.Item.Commands.AddEdit;
+
 using BlazorAndFluxorCrud.Model;
 using BlazorAndFluxorCrud.State;
+
+using Domain.Common;
 
 using Microsoft.AspNetCore.Components;
 
@@ -11,12 +15,15 @@ public partial class EditItemForm
     [Parameter] 
     public int ItemId { get; set; }
 
-    private Item itemToEdit = new();
+    private AddEditItemCommand itemToEdit = new();
+
 
     protected override Task OnInitializedAsync()
     {
         try
         {
+
+
             Console.WriteLine($"Loaded EditItem with ItemId: {ItemId}");
 
             ItemState.StateChanged += OnItemStateChanged;
@@ -41,14 +48,14 @@ public partial class EditItemForm
 
     private void HandleValidSubmit()
     {
-        _Dispatcher.Dispatch(new UpdateItemAction(itemToEdit ?? throw new Exception("Item is null !!")));
+        //_Dispatcher.Dispatch(new UpdateItemAction(itemToEdit ?? throw new Exception("Item is null !!")));
 
         Navigation.NavigateTo("/"); 
     }
 
     private void OnItemStateChanged(object? sender, EventArgs e)
     {
-        itemToEdit = ItemState.Value.CurrentItem;
+        //itemToEdit = ItemState.Value.CurrentItem;
 
         StateHasChanged(); 
     }
