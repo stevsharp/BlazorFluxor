@@ -1,10 +1,15 @@
 ﻿using Application.Features.Item.DTOs;
 using Application.Features.Item.Queries.GetAll;
+using Application.Features.Item.Queries.GetById;
+
 using BlazorAndFluxorCrud.Model;
 using BlazorAndFluxorCrud.Service;
 using BlazorAndFluxorCrud.State;
+
 using Fluxor;
+
 using MediatR;
+
 using MudBlazor;
 
 namespace BlazorAndFluxorCrud.Effects;
@@ -22,16 +27,17 @@ public class ItemEffects(AppDbContext dbContext,
     [EffectMethod]
     public async Task HandleFetchCurrentItemAction(FetchCurrentItemAction action, IDispatcher dispatcher)
     {
-        //var item = await _dbContext.Items.FindAsync(action.ItemId);
 
-        //if (item is not null)
-        //{
-        //    dispatcher.Dispatch(new LoadCurrentItemAction(item));
-        //}
-        //else
-        //{
-        //    dispatcher.Dispatch(new LoadCurrentItemAction(null)); // or handle as appropriate
-        //}
+        var item = await _mediator.Send(new GetItemByIdQuery { Id = action.ItemId }).ConfigureAwait(false);
+
+        if (item is not null)
+        {
+            dispatcher.Dispatch(new LoadCurrentItemAction(item));
+        }
+        else
+        {
+            dispatcher.Dispatch(new LoadCurrentItemAction(null)); // or handle as appropriate
+        }
     }
 
     [EffectMethod]

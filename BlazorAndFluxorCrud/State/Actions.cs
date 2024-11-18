@@ -1,7 +1,5 @@
 ﻿using Application.Features.Item.DTOs;
 
-using BlazorAndFluxorCrud.Model;
-
 using System.Collections.Immutable;
 
 namespace BlazorAndFluxorCrud.State;

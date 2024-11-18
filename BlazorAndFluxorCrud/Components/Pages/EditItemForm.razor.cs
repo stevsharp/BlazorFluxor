@@ -1,4 +1,5 @@
 using Application.Features.Item.Commands.AddEdit;
+using Application.Features.Item.DTOs;
 
 using BlazorAndFluxorCrud.Model;
 using BlazorAndFluxorCrud.State;
@@ -15,15 +16,13 @@ public partial class EditItemForm
     [Parameter] 
     public int ItemId { get; set; }
 
-    private AddEditItemCommand itemToEdit = new();
+    private ItemDto itemToEdit = new();
 
 
     protected override Task OnInitializedAsync()
     {
         try
         {
-
-
             Console.WriteLine($"Loaded EditItem with ItemId: {ItemId}");
 
             ItemState.StateChanged += OnItemStateChanged;
@@ -55,7 +54,7 @@ public partial class EditItemForm
 
     private void OnItemStateChanged(object? sender, EventArgs e)
     {
-        //itemToEdit = ItemState.Value.CurrentItem;
+        itemToEdit = ItemState.Value.CurrentItem;
 
         StateHasChanged(); 
     }

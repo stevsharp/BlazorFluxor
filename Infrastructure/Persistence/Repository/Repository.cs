@@ -15,6 +15,14 @@ public class Repository<T>(AppDbContext context) : IRepository<T> where T : Enti
     public virtual async Task<T?> GetByIdAsync(int id, CancellationToken token) =>
         await _context.Set<T>().FindAsync(id, token);
 
+
+    public virtual async Task<T?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken token = default)
+    {
+        return specification is null
+            ? throw new ArgumentNullException(nameof(specification))
+            : await ApplySpecification(specification).FirstOrDefaultAsync(token).ConfigureAwait(false);
+    }
+
     public virtual async Task<IEnumerable<T>> ListAsync(ISpecification<T> specification, CancellationToken token)
     {
         var query = ApplySpecification(specification);

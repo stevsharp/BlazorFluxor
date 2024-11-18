@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Application.Features.Item.Queries.GetAll;
 
-public class GetAllItemsQuery : IStreamRequest<ItemDto> { }
+public record GetAllItemsQuery : IStreamRequest<ItemDto> { }
 
 public class GetAllItemsQueryHandler(IRepository<BlazorAndFluxorCrud.Model.Item> repository) 
     : IStreamRequestHandler<GetAllItemsQuery, ItemDto>
