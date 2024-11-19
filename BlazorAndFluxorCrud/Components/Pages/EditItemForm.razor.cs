@@ -1,13 +1,6 @@
-using Application.Features.Item.Commands.AddEdit;
 using Application.Features.Item.DTOs;
-
-using BlazorAndFluxorCrud.Model;
 using BlazorAndFluxorCrud.State;
-
-using Domain.Common;
-
 using Microsoft.AspNetCore.Components;
-
 using MudBlazor;
 
 namespace BlazorAndFluxorCrud.Components.Pages;
@@ -17,7 +10,6 @@ public partial class EditItemForm
     public int ItemId { get; set; }
 
     private ItemDto itemToEdit = new();
-
 
     protected override Task OnInitializedAsync()
     {
@@ -47,7 +39,7 @@ public partial class EditItemForm
 
     private void HandleValidSubmit()
     {
-        //_Dispatcher.Dispatch(new UpdateItemAction(itemToEdit ?? throw new Exception("Item is null !!")));
+        _Dispatcher.Dispatch(new UpdateItemAction(itemToEdit ?? throw new Exception("Item is null !!")));
 
         Navigation.NavigateTo("/"); 
     }

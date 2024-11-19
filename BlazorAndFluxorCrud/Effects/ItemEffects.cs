@@ -1,8 +1,8 @@
-﻿using Application.Features.Item.DTOs;
+﻿using Application.Features.Item.Commands.AddEdit;
+using Application.Features.Item.Commands.Delete;
+using Application.Features.Item.DTOs;
 using Application.Features.Item.Queries.GetAll;
 using Application.Features.Item.Queries.GetById;
-
-using BlazorAndFluxorCrud.Model;
 using BlazorAndFluxorCrud.Service;
 using BlazorAndFluxorCrud.State;
 
@@ -14,13 +14,12 @@ using MudBlazor;
 
 namespace BlazorAndFluxorCrud.Effects;
 
-public class ItemEffects(AppDbContext dbContext,
+public class ItemEffects(
     ISnackbar snackBar,
     DialogUIService DialogUIService,
     IMediator mediator
     )
 {
-    private readonly AppDbContext _dbContext = dbContext;
 
     private readonly IMediator _mediator = mediator;
 
@@ -56,25 +55,41 @@ public class ItemEffects(AppDbContext dbContext,
     [EffectMethod]
     public async Task HandleAddItemAction(AddItemAction action, IDispatcher dispatcher)
     {
-        //var addedItem = (await _dbContext.Items.AddAsync(action.NewItem)).Entity;
+        var returnId = await _mediator.Send(new AddEditItemCommand { Id = action.NewItem.Id , Description = action.NewItem.Description , 
+            Name = action.NewItem.Name })
+            .ConfigureAwait(false);
 
-        //await _dbContext.SaveChangesAsync();
+        if (returnId > 0)
+        {
+            snackBar.Add($"Item Addedd succesfully {returnId}", Severity.Success);
 
-        //snackBar.Add($"Item Addedd succesfully {addedItem.Id}", Severity.Success);
+            dispatcher.Dispatch(new AddItemResultAction(new ItemDto
+            {
+                Name = action.NewItem.Name,
+                Description = action.NewItem.Description,
+                Id = returnId
+            }));
+        }
 
-        //dispatcher.Dispatch(new AddItemResultAction(addedItem));
     }
 
     [EffectMethod]
     public async Task HandleUpdateItemAction(UpdateItemAction action, IDispatcher dispatcher)
     {
-        //_dbContext.Items.Update(action.UpdatedItem);
+        var returnId = await _mediator.Send(new AddEditItemCommand
+        {
+            Id = action.UpdatedItem.Id,
+            Description = action.UpdatedItem.Description,
+            Name = action.UpdatedItem.Name
+        })
+          .ConfigureAwait(false);
 
-        //await _dbContext.SaveChangesAsync();
+        if (returnId > 0)
+        {
+            snackBar.Add($"Item Updated succesfully {action.UpdatedItem.Id}", Severity.Success);
 
-        //snackBar.Add($"Item Updated succesfully {action.UpdatedItem.Id}", Severity.Success);
-
-        //dispatcher.Dispatch(new UpdateItemResultAction(action.UpdatedItem));
+            dispatcher.Dispatch(new UpdateItemResultAction(action.UpdatedItem));
+        }
     }
 
     [EffectMethod]
@@ -83,18 +98,15 @@ public class ItemEffects(AppDbContext dbContext,
         await DialogUIService.ShowDeleteConfirmationDialog(new object(), "Delete Item", $"Delete Item with Id : {action.ItemId}",
         async () =>
         {
-            var item = await _dbContext.Items.FindAsync(action.ItemId);
+            var itemWasDeleted = await _mediator.Send(new DeleteItemQuery { Id = action.ItemId }).ConfigureAwait(false);
 
-            if (item is not null)
+            if (itemWasDeleted > 0)
             {
-                _dbContext.Items.Remove(item);
-
-                await _dbContext.SaveChangesAsync();
-
-                snackBar.Add($"Item Deleted succesfully {item.Id}", Severity.Success);
+                snackBar.Add($"Item Deleted succesfully {itemWasDeleted}", Severity.Success);
 
                 dispatcher.Dispatch(new DeleteItemResultAction(action.ItemId));
             }
+
         },
         async () =>
         {

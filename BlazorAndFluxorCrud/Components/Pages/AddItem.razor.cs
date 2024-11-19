@@ -1,16 +1,14 @@
-using Application.Features.Item.Commands.AddEdit;
-
-using BlazorAndFluxorCrud.Model;
+using Application.Features.Item.DTOs;
 using BlazorAndFluxorCrud.State;
 
 namespace BlazorAndFluxorCrud.Components.Pages;
 public partial class AddItem
 {
-    private AddEditItemCommand newItem = new();
+    private ItemDto newItem = new();
 
     private void HandleValidSubmit()
     {
-        //_Dispatcher.Dispatch(new AddItemAction(newItem));
+        _Dispatcher.Dispatch(new AddItemAction(newItem));
 
         Navigation.NavigateTo("/");
     }
